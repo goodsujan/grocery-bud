@@ -3,36 +3,128 @@
   grid-template-columns: auto 1fr auto auto;
   column-gap: 1rem;
   align-items: center;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.single-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(102, 126, 234, 0.2);
 }
 
 .single-item p {
   text-transform: capitalize;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .single-item input[type="checkbox"] {
   cursor: pointer;
-  width: 1rem;
-  height: 1rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--primary-purple);
+  transition: transform 0.2s ease;
 }
 
+.single-item input[type="checkbox"]:hover {
+  transform: scale(1.1);
+}
+
+/* Edit Button - Vibrant Cyan/Blue Gradient */
 .single-item .btn {
   cursor: pointer;
   color: #fff;
-  background: #06b6d4;
-  border: transparent;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  background: var(--success-gradient);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(79, 172, 254, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.single-item .btn::after {
+  content: '✏️';
+  margin-left: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.single-item .btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.single-item .btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .single-item .btn:hover {
-  background: #0e7490;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(79, 172, 254, 0.4);
 }
 
+.single-item .btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Delete Button - Vibrant Red/Orange Gradient */
 .single-item .remove-btn {
-  background: #222;
+  background: var(--danger-gradient);
+  box-shadow: 0 4px 8px rgba(248, 54, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.single-item .remove-btn::after {
+  content: '🗑️';
+  margin-left: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.single-item .remove-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.single-item .remove-btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .single-item .remove-btn:hover {
-  background: #900e0e;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(248, 54, 0, 0.5);
+  background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%);
+}
+
+.single-item .remove-btn:active {
+  transform: translateY(-1px) scale(1.02);
 }
