@@ -1,9 +1,10 @@
-import { addItem } from "./app.js";
+import { addItem, updateItemName } from "./app.js"; // edited
 
 // Create Form Element
-export function createForm() {
+export function createForm(editId, itemToEdit) {
   const form = document.createElement("form");
 
+  // added value and dynamic button name
   form.innerHTML = `
     <h2>grocery bud</h2>
     <div class="form-control">
@@ -11,9 +12,10 @@ export function createForm() {
         type="text"
         class="form-input"
         placeholder="e.g. eggs"
+        value="${itemToEdit ? itemToEdit.name : ""}"
       />
       <button type="submit" class="btn">
-        add item
+        ${editId ? "edit item" : "add item"}
       </button>
     </div>
   `;
@@ -24,11 +26,17 @@ export function createForm() {
     const value = input.value.trim();
 
     if (!value) {
-      alert("Please provide value");
+      alert("please provide value", "error");
       return;
     }
 
-    addItem(value);
+    // added conditions
+    if (editId) {
+      updateItemName(value);
+    } else {
+      addItem(value);
+    }
+
     input.value = "";
   });
 
