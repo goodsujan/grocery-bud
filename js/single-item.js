@@ -10,10 +10,10 @@ export function createSingleItem(item) {
       ${item.name}
     </p>
     <button class="btn icon-btn edit-btn" type="button">
-      <i class="fa-regular fa-pen-to-square"></i>
+      Edit
     </button>
     <button class="btn icon-btn remove-btn" type="button">
-      <i class="fa-regular fa-trash-can"></i>
+      Delete
     </button>
   `;
 
