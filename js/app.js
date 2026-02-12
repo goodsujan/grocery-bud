@@ -1,6 +1,7 @@
 import { createItems } from "./items.js";
 // ....
 import { createForm } from "./form.js";
+import { createCounter } from "./counter.js";
 // Local Storage Functions
 function getLocalStorage() {
   const list = localStorage.getItem("grocery-list");
@@ -27,9 +28,11 @@ function render() {
     editId,
     editId ? items.find((item) => item.id === editId) : null,
   ); // edited line
+  const counterElement = createCounter(items);
   const itemsElement = createItems(items);
 
   app.appendChild(formElement);
+  app.appendChild(counterElement);
   app.appendChild(itemsElement);
 }
 

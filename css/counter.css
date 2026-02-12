@@ -1,0 +1,114 @@
+/* Counter Styles */
+.counter-container {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.counter-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+    align-items: center;
+}
+
+.counter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.counter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.counter-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.counter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.counter-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.counter-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.counter-item.total .counter-value {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.counter-item.completed .counter-value {
+    background: var(--success-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.counter-item.pending .counter-value {
+    background: var(--warning-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.counter-divider {
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(180deg, transparent 0%, var(--border-color) 50%, transparent 100%);
+}
+
+/* Responsive Design for Counter */
+@media (max-width: 600px) {
+    .counter-card {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .counter-divider {
+        display: none;
+    }
+
+    .counter-item {
+        justify-content: flex-start;
+        padding: 0.5rem;
+    }
+}
