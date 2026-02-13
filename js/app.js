@@ -2,6 +2,7 @@ import { createItems } from "./items.js";
 // ....
 import { createForm } from "./form.js";
 import { createCounter } from "./counter.js";
+import { showNotification, autoHideNotification, setAutoHideCallback } from "./notification.js";
 // Local Storage Functions
 function getLocalStorage() {
   const list = localStorage.getItem("grocery-list");
@@ -18,6 +19,13 @@ function setLocalStorage(itemsArray) {
 // Initialize items from local storage
 let items = getLocalStorage();
 let editId = null;
+let currentNotification = null;
+
+// Set up auto-hide callback
+setAutoHideCallback(() => {
+  currentNotification = null;
+  render();
+});
 
 // Render App
 function render() {
@@ -33,6 +41,12 @@ function render() {
 
   app.appendChild(formElement);
   app.appendChild(counterElement);
+
+  // Insert notification if exists
+  if (currentNotification) {
+    app.appendChild(currentNotification);
+  }
+
   app.appendChild(itemsElement);
 }
 
@@ -58,8 +72,9 @@ export function editCompleted(itemId) {
 export function removeItem(itemId) {
   items = items.filter((item) => item.id !== itemId);
   setLocalStorage(items);
+  currentNotification = showNotification("Item Deleted Successfully!", "delete");
   render();
-  setTimeout(() => alert("Item Deleted Successfully!"), 0);
+  autoHideNotification();
 }
 
 // Generate unique ID
@@ -76,8 +91,9 @@ export function addItem(itemName) {
   };
   items = [...items, newItem];
   setLocalStorage(items);
+  currentNotification = showNotification("Item Added Successfully!", "success");
   render();
-  setTimeout(() => alert("Item Added Successfully!"), 0);
+  autoHideNotification();
 }
 
 // Update Item Name Function
@@ -90,8 +106,9 @@ export function updateItemName(newName) {
   });
   editId = null;
   setLocalStorage(items);
+  currentNotification = showNotification("Item Updated Successfully!", "edit");
   render();
-  setTimeout(() => alert("Item Updated Successfully!"), 0);
+  autoHideNotification();
 }
 
 // Set Edit ID Function
@@ -106,4 +123,10 @@ export function setEditId(itemId) {
       input.focus();
     }
   }, 0);
+}
+
+// Set Date
+const date = document.getElementById("date");
+if (date) {
+  date.innerHTML = new Date().getFullYear();
 }
